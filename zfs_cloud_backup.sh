@@ -17,6 +17,13 @@ execute_command() {
     eval "$COMMAND"
 }
 
+for dir in "$SNAPSHOT_DIR" "$REMOTE"; do
+    if [ ! -d "$dir" ]; then
+        echo "[ERROR] Directory '$dir' does not exist, please ensure variables are set correctly."
+        exit 1
+    fi
+done
+
 # Fetch snapshots for the dataset
 SNAPSHOTS=$(zfs list -t snapshot -H -o name -s creation | grep "^zfs_backup/snapshots")
 if [ -n "$SNAPSHOTS" ]; then
