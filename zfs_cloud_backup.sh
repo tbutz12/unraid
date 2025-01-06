@@ -59,8 +59,6 @@ for DATASET in $DATASETS; do
 
             # Upload the backup to Google Drive
             echo "[INFO] Uploading ${SANITIZED_SNAPSHOT}.gz to Google Drive..."
-            echo "TEST"
-            echo ${BACKUP_FILE} ${REMOTE}
             execute_command "rclone copy ${BACKUP_FILE} ${REMOTE}"
 
             # Clean up the local backup file
